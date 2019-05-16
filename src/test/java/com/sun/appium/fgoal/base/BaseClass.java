@@ -50,7 +50,7 @@ public class BaseClass {
 		DesiredCapabilities cap = new DesiredCapabilities();
 //		cap.setCapability("app", path + "//app//fgoal.apk");
 		cap.setCapability("platformName", "Android");
-		cap.setCapability("deviceName", "Moto G");
+		cap.setCapability("deviceName", runOn);
 		cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.framgia.fgoal.stg");
 		cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.framgia.fgoal.screen.login.LoginActivity");
 //		if (runOn.equals("192.168.56.101:5555")) {
