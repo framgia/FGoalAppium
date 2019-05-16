@@ -4,17 +4,10 @@
 	<test name="Real Device">
 	<parameter name="runAs" value="grid"></parameter>
 	<parameter name="platform" value="mobile"></parameter>
-	<parameter name="runOn" value="087fc6cc"></parameter>
+	<parameter name="environment" value="device"></parameter>
+	<parameter name="runOn" value="emulator-5554"></parameter> <!-- emulator-5554 -->
 		<packages>
 			<package name="com.sun.appium.fgoal.scripts"></package>
 		</packages>
 	</test>
-	<!-- <test name="Enmulator">
-	<parameter name="runAs" value="grid"></parameter>
-	<parameter name="platform" value="mobile"></parameter>
-	<parameter name="runOn" value="192.168.56.101:5555"></parameter>
-		<packages>
-			<package name="com.sun.appium.fgoal.scripts"></package>
-		</packages>
-	</test> -->
 </suite>
