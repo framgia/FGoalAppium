@@ -1,5 +1,6 @@
 package com.sun.appium.fgoal.scripts;
 
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -26,6 +27,6 @@ public class LoginTest extends BaseClass {
 		loginPage.enterUserName(userName);
 		loginPage.enterPassword(passWord);
 		loginPage.login();
-		
+		Assert.assertEquals(loginPage.getToolbarTitle(), "Chu Anh Tuan");
 	}
 }

@@ -76,7 +76,7 @@ public class BaseClass {
 
 	}
 
-	public WebDriver getDriver() {
+	public AndroidDriver getDriver() {
 		return this.driver;
 	}
 

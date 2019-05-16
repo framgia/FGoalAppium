@@ -1,8 +1,9 @@
 package com.sun.appium.fgoal.objects;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
 /**
@@ -11,13 +12,24 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
  */
 public class LoginPageObject {
 
+	private AndroidDriver driver;
+
+	public LoginPageObject(AndroidDriver driver) {
+		this.driver = driver;
+	}
+
 	@AndroidFindBy(id = "com.framgia.fgoal.stg:id/edit_username")
-	public WebElement usernameTextField;
+	public MobileElement usernameTextField;
 
 	@AndroidFindBy(id = "com.framgia.fgoal.stg:id/edit_password")
-	public WebElement passwordTextField;
+	public MobileElement passwordTextField;
 
-//	@AndroidFindBy(xpath = "//*[@text='Sign in']/../following::android.widget.TextView[1]")
+	// @AndroidFindBy(xpath = "//*[@text='Sign
+	// in']/../following::android.widget.TextView[1]")
 	@AndroidFindBy(id = "com.framgia.fgoal.stg:id/text_login")
-	public WebElement loginButton;
+	public MobileElement loginButton;
+
+	public MobileElement getToolbar() {
+		return (MobileElement) driver.findElement(By.id("com.framgia.fgoal.stg:id/toolbar_title"));
+	}
 }

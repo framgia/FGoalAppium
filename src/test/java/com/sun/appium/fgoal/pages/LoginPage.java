@@ -14,13 +14,13 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
  */
 public class LoginPage {
 
-	LoginPageObject loginPageObject = new LoginPageObject();
+	private BaseClass obj = new BaseClass();
+	private LoginPageObject loginPageObject = new LoginPageObject(obj.getDriver());
+	
 
 	public LoginPage() {
-		BaseClass obj = new BaseClass();
-
+		
 		PageFactory.initElements(new AppiumFieldDecorator(obj.getDriver()), loginPageObject);
-
 	}
 
 	public void enterUserName(String username) {
@@ -34,5 +34,9 @@ public class LoginPage {
 	
 	public void login() {
 		loginPageObject.loginButton.click();
+	}
+	
+	public String getToolbarTitle() {
+		return loginPageObject.getToolbar().getText();
 	}
 }
