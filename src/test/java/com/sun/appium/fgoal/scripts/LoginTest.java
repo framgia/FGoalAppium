@@ -20,6 +20,53 @@ public class LoginTest extends BaseClass {
 	private Object[][] loginDataProvider() {
 		return CSVHelper.loadUser();
 	}
+	
+//	@DataProvider
+//	private Object[][] loginDataProviderNoUserName() {
+//		return CSVHelper.loadUser(2,1);
+//	}
+//	
+//	@DataProvider
+//	private Object[][] loginDataProviderNoPassword() {
+//		return CSVHelper.loadUser(0,3);
+//	}
+//	
+//	@DataProvider
+//	private Object[][] loginDataProviderNoUserNameAndPassword() {
+//		return CSVHelper.loadUser(2,3);
+//	}
+	
+//	@Test(priority = 0,dataProvider = "loginDataProviderNoUserName")
+//	public void testLoginNoUserName(String userName, String passWord) {
+//		loginPage = new LoginPage();
+//		loginPage.enterUserName(userName);
+//		loginPage.enterPassword(passWord);
+//		loginPage.login();
+//		String emptyEmail = loginPage.getEmptyEmailText();
+//		Assert.assertEquals(emptyEmail, "Empty email");
+//	}
+//	
+//	@Test(priority = 1,dataProvider = "loginDataProviderNoPassword")
+//	public void testLoginNoPassword(String userName, String passWord) {
+//		loginPage = new LoginPage();
+//		loginPage.enterUserName(userName);
+//		loginPage.enterPassword(passWord);
+//		loginPage.login();
+//		String emptyPassword = loginPage.getEmptyPasswordText();
+//		Assert.assertEquals(emptyPassword, "Empty password");
+//	}
+//	
+//	@Test(priority = 2,dataProvider = "loginDataProviderNoUserNameAndPassword")
+//	public void testLoginNoUserNameAndPassword(String userName, String passWord) {
+//		loginPage = new LoginPage();
+//		loginPage.enterUserName(userName);
+//		loginPage.enterPassword(passWord);
+//		loginPage.login();
+//		String emptyEmail = loginPage.getEmptyEmailText();
+//		Assert.assertEquals(emptyEmail, "Empty email");
+//		String emptyPassword = loginPage.getEmptyPasswordText();
+//		Assert.assertEquals(emptyPassword, "Empty password");
+//	}
 
 	@Test(dataProvider = "loginDataProvider")
 	public void testLogin(String userName, String passWord) {
@@ -27,6 +74,6 @@ public class LoginTest extends BaseClass {
 		loginPage.enterUserName(userName);
 		loginPage.enterPassword(passWord);
 		loginPage.login();
-		Assert.assertEquals(loginPage.getToolbarTitle(), "Chu Anh Tuan");
+		Assert.assertEquals(loginPage.getToolbarTitle(), "Le Thi Ha");
 	}
 }

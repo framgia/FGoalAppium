@@ -1,11 +1,13 @@
 package com.sun.appium.fgoal.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import com.sun.appium.fgoal.base.BaseClass;
 import com.sun.appium.fgoal.objects.LoginPageObject;
 import com.sun.appium.fgoal.ultilities.GeneralKeywors;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 /**
@@ -38,5 +40,13 @@ public class LoginPage {
 	
 	public String getToolbarTitle() {
 		return loginPageObject.getToolbar().getText();
+	}
+	
+	public String getEmptyEmailText() {
+		return loginPageObject.getEmptyEmail().getText();
+	}
+	
+	public String getEmptyPasswordText() {
+		return loginPageObject.getEmptyPassword().getText();
 	}
 }
