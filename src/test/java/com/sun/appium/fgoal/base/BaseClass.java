@@ -50,14 +50,15 @@ public class BaseClass {
 		DesiredCapabilities cap = new DesiredCapabilities();
 //		cap.setCapability("app", path + "//app//fgoal.apk");
 		cap.setCapability("platformName", "Android");
-		cap.setCapability("deviceName", runOn);
+//		cap.setCapability("deviceName", runOn);
+		cap.setCapability("udid", "3300aa2295222455");
 		cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.framgia.fgoal.stg");
 		cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.framgia.fgoal.screen.login.LoginActivity");
 //		if (runOn.equals("192.168.56.101:5555")) {
 //			cap.setCapability("udid", "192.168.56.101:5555");
 //			driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4729/wd/hub"), cap);
 //		} else if (runOn.equals("087fc6cc")) {
-			cap.setCapability("deviceName", "087fc6cc");
+			cap.setCapability("deviceName", "Galaxy J7 Prime");//3300aa2295222455
 			driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
 //		} else if (platformRunAs.equals("mobile")) {
 //			driver = new AndroidDriver<MobileElement>(service.getUrl(), cap);
