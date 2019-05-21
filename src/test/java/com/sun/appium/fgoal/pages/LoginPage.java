@@ -28,10 +28,19 @@ public class LoginPage {
 	public void enterUserName(String username) {
 		GeneralKeywors.sendkeys(loginPageObject.usernameTextField, username);
 	}
+	
+	public String getUserName()
+	{
+		return loginPageObject.usernameTextField.getText();
+	}
 
 	public void enterPassword(String password) {
 		GeneralKeywors.sendkeys(loginPageObject.passwordTextField, password);
-		System.out.println(loginPageObject.loginButton.getText());
+	}
+	
+	public String getPassword()
+	{
+		return loginPageObject.passwordTextField.getText();
 	}
 	
 	public void login() {
@@ -43,10 +52,15 @@ public class LoginPage {
 	}
 	
 	public String getEmptyEmailText() {
-		return loginPageObject.getEmptyEmail().getText();
+		return loginPageObject.getEmptyEmail() != null ? loginPageObject.getEmptyEmail().getText()  : "";
 	}
 	
 	public String getEmptyPasswordText() {
-		return loginPageObject.getEmptyPassword().getText();
+		return loginPageObject.getEmptyPassword() != null ? loginPageObject.getEmptyPassword().getText() : "";
+	}
+
+	public void clearAllText() {
+		loginPageObject.usernameTextField.clear();
+		loginPageObject.passwordTextField.clear();
 	}
 }

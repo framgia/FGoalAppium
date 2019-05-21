@@ -22,17 +22,29 @@ public class CSVHelper {
 		return userData;
 	}
 	
-//	public static Object[][] loadUser(int nameIndex, int passIndex)
-//	{
-//		/*
-//		 * 0 : Correct user name
-//		 * 1 : Correct password
-//		 * 2 : No name
-//		 * 3 : No password
-//		*/
-//		Object[][] userData = new Object[1][4];
-//		userData[0][nameIndex] = user.get("username");
-//		userData[0][passIndex] = user.get("password");
-//		return userData;
-//	}
+	public static Object[][] loadUser(int nameIndex, int passIndex)
+	{
+		/*
+		 * 0 : Data
+		 * 1 : No Data
+		*/
+		String name = null;
+		if(nameIndex != 0)
+		{
+			name = (String) user.get("username");
+		} else {
+			name = (String) user.get("usernameEmpty");
+		}
+		String password = null;
+		if(passIndex != 0)
+		{
+			password = (String) user.get("password");
+		} else {
+			password = (String) user.get("passwordEmpty");
+		}
+		Object[][] userData = new Object[1][2];
+		userData[0][0] = name;
+		userData[0][1] = password;
+		return userData;
+	}
 }
