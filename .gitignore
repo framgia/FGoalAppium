@@ -12,6 +12,7 @@
 target/
 test-output/
 .settings/
+data/user.csv
 
 # Package Files #
 *.jar
