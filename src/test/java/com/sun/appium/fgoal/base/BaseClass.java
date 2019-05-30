@@ -49,8 +49,8 @@ public class BaseClass {
 
 		DesiredCapabilities cap = new DesiredCapabilities();
 //		cap.setCapability("app", path + "//app//fgoal.apk");
-		cap.setCapability("platformName", "Android");
 		cap.setCapability("deviceName", runOn);
+		cap.setCapability("platformName", "Android");
 		cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.framgia.fgoal.stg");
 		cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.framgia.fgoal.screen.login.LoginActivity");
 		driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
