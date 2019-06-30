@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class CSVHelperLogin {
+public class CSVHelperLogin3 {
 	private static final String path = System.getProperty("user.dir");
 	private static Properties user = new Properties();
 	static {
