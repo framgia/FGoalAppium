@@ -21,30 +21,4 @@ public class CSVHelper {
 		userData[0][1] = user.get("password");
 		return userData;
 	}
-	
-	public static Object[][] loadUser(int nameIndex, int passIndex)
-	{
-		/*
-		 * 0 : Data
-		 * 1 : No Data
-		*/
-		String name = null;
-		if(nameIndex != 0)
-		{
-			name = (String) user.get("username");
-		} else {
-			name = (String) user.get("usernameEmpty");
-		}
-		String password = null;
-		if(passIndex != 0)
-		{
-			password = (String) user.get("password");
-		} else {
-			password = (String) user.get("passwordEmpty");
-		}
-		Object[][] userData = new Object[1][2];
-		userData[0][0] = name;
-		userData[0][1] = password;
-		return userData;
-	}
 }

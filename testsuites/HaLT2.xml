@@ -10,7 +10,7 @@
 		</packages> -->
 	<!-- Chay tung case  -->
 		<classes>
-			<class name="com.sun.appium.fgoal.scripts.LoginTest"></class>
+			<class name="com.sun.appium.fgoal.scripts.LoginTest2"></class>
 		</classes>
 	</test>
  <!-- <test name="Enmulator">
