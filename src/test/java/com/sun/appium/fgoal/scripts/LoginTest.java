@@ -24,37 +24,86 @@ public class LoginTest extends BaseClass {
 
 	LoginPage loginPage;
 
+	
+	@DataProvider
+	private Object[][] loginDataProviderNoUserName() {
+		return CSVHelper.loadUser(0,1);
+	}
+	
+	@DataProvider
+	private Object[][] loginDataProviderNoPassword() {
+		return CSVHelper.loadUser(1,0);
+	}
+	
+	@DataProvider
+	private Object[][] loginDataProviderNoUserNameAndPassword() {
+		return CSVHelper.loadUser(0,0);
+	}
+	
 	@DataProvider
 	private Object[][] loginDataProvider() {
-		return CSVHelper.loadUser();
+		return CSVHelper.loadUser(1,1);
 	}
-
-	// @Test(dataProvider = "loginDataProvider")
-	// public void testToastMessage(String userName, String passWord) {
-	//// AndroidDriver driver = getDriver("UiAutomator2");
-	// WebDriverWait wait = new WebDriverWait(driver, 10);
-	// ExpectedCondition<WebElement> loginScreenReady =
-	// ExpectedConditions.presenceOfElementLocated(loginScreen);
-	// ExpectedCondition<WebElement> usernameReady =
-	// ExpectedConditions.presenceOfElementLocated(username);
-	// private By verificationTextUiAuto2 = By.xpath(
-	// "//android.widget.TextView[contains(@text, 'alice')]");
-	// ExpectedCondition<WebElement> verificationReady =
-	// ExpectedConditions.presenceOfElementLocated(verificationTextUiAuto2);
-	//
-	// try {
-	// wait.until(loginScreenReady).click();
-	// wait.until(usernameReady).sendKeys("alice");
-	// driver.findElement(password).sendKeys("mypassword");
-	// driver.findElement(loginBtn).click();
-	// wait.until(verificationReady);
-	// } finally {
-	// driver.quit();
-	// }
-	//
-	// }
-
-	@Test(dataProvider = "loginDataProvider")
+	
+	//TC04
+	@Test(priority = 0,dataProvider = "loginDataProviderNoUserName")
+	public void testLoginNoUserName(String userName, String passWord) {
+		loginPage = new LoginPage();
+		loginPage.enterUserName(userName);
+		loginPage.enterPassword(passWord);
+		loginPage.login();
+		String emptyEmail = loginPage.getEmptyEmailText();
+		Assert.assertEquals(emptyEmail, "Empty email");
+		loginPage.clearAllText();
+	}
+	
+	//TC05
+	
+	@Test(priority = 1,dataProvider = "loginDataProviderNoPassword")
+	public void testLoginNoPassword(String userName, String passWord) {
+		loginPage = new LoginPage();
+		loginPage.enterUserName(userName);
+		loginPage.enterPassword(passWord);
+		loginPage.login();
+		String emptyPassword = loginPage.getEmptyPasswordText();
+		Assert.assertEquals(emptyPassword, "Empty password");
+		loginPage.clearAllText();
+	}
+	
+	//TC06
+	
+	@Test(priority = 2,dataProvider = "loginDataProviderNoUserNameAndPassword")
+	public void testLoginNoUserNameAndPassword(String userName, String passWord) {
+		loginPage = new LoginPage();
+		loginPage.enterUserName(userName);
+		loginPage.enterPassword(passWord);
+		loginPage.login();
+		String emptyEmail = loginPage.getEmptyEmailText();
+		Assert.assertEquals(emptyEmail, "Empty email");
+		String emptyPassword = loginPage.getEmptyPasswordText();
+		Assert.assertEquals(emptyPassword, "Empty password");
+		loginPage.clearAllText();
+	}
+	
+	//TC25
+	@Test(priority = 3,dataProvider = "loginDataProvider")
+	public void testLoginPassEncoding(String userName, String passWord) {
+		loginPage = new LoginPage();
+		loginPage.enterUserName(userName);
+		loginPage.enterPassword(passWord);
+		try {
+			Thread.sleep(5000);
+			Assert.assertEquals(loginPage.getPassword(), "••••••");
+			loginPage.clearAllText();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	//TC07
+	
+	@Test(priority = 4,dataProvider = "loginDataProvider")
 	public void testLogin(String userName, String passWord) {
 		loginPage = new LoginPage();
 		loginPage.enterUserName(userName);
@@ -78,5 +127,6 @@ public class LoginTest extends BaseClass {
 		Assert.assertEquals(toastView.getAttribute("name").trim(), "Sai mật khẩu hoặc email");
 //		Assert.assertEquals(loginPage.getToastMessage(), "Sai mật khẩu hoặc email");
 		// Assert.assertEquals(loginPage.getToolbarTitle(), "Chu Anh Tuan");
+//		Assert.assertEquals(loginPage.getToolbarTitle(), "Le Thi Ha");
 	}
 }
