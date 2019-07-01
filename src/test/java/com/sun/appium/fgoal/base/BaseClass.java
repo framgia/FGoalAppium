@@ -50,6 +50,7 @@ public class BaseClass {
 		DesiredCapabilities cap = new DesiredCapabilities();
 //		cap.setCapability("app", path + "//app//fgoal.apk");
 		cap.setCapability("deviceName", runOn);
+		cap.setCapability("automationName","UiAutomator2");
 		cap.setCapability("platformName", "Android");
 		cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.framgia.fgoal.stg");
 		cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.framgia.fgoal.screen.login.LoginActivity");

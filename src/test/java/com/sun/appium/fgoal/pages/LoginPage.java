@@ -43,4 +43,22 @@ public class LoginPage {
 	public String getToolbarTitle() {
 		return loginPageObject.getToolbar().getText();
 	}
+	
+	public String getToastMessage() {
+		return loginPageObject.getToastMessage().getText();
+	}
+	
+	public String getEmptyEmailText() {
+		return loginPageObject.getEmptyEmail() != null ? loginPageObject.getEmptyEmail().getText()  : "";
+	}
+	
+	public String getEmptyPasswordText() {
+		return loginPageObject.getEmptyPassword() != null ? loginPageObject.getEmptyPassword().getText() : "";
+	}
+
+	public void clearAllText() {
+		loginPageObject.usernameTextField.clear();
+		loginPageObject.passwordTextField.clear();
+	}
+
 }

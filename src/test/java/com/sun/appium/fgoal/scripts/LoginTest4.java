@@ -2,6 +2,9 @@ package com.sun.appium.fgoal.scripts;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -54,58 +57,73 @@ public class LoginTest4 extends BaseClass {
 		return CSVHelperLogin4.loadUser24();
 	}
 	
-//	//TC18- Toast message => Pending
-//	@Test(priority = 0,dataProvider = "loginDataProviderpaceBeginningEndPassword")
-//	public void testUppercaseLowercaseUserName(String userName, String passWord) {
-//		loginPage = new LoginPage2();
-//		loginPage.enterUserName(userName);
-//		loginPage.enterPassword(passWord);
-//		loginPage.login();
-//		String spacePassword = loginPage.getPassword();
-//		Assert.assertEquals(spacePassword, "Sai mật khẩu hoặc email");
-//		loginPage.clearAllText();
-//	}
+	//TC18- Toast message 
+	@Test(priority = 0,dataProvider = "loginDataProviderpaceBeginningEndPassword")
+	public void testUppercaseLowercaseUserName(String userName, String passWord) {
+		loginPage = new LoginPage2();
+		loginPage.enterUserName(userName);
+		loginPage.enterPassword(passWord);
+		loginPage.login();
+		By verificationTextUiAuto2 = By.xpath("//android.widget.Toast[1]");
+		ExpectedCondition<WebElement> verificationReady = ExpectedConditions
+						.presenceOfElementLocated(verificationTextUiAuto2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(verificationReady);
+		WebElement toastView = getDriver().findElement(By.xpath("//android.widget.Toast[1]"));
+		Assert.assertEquals(toastView.getAttribute("name").trim(), "Sai mật khẩu hoặc email");
+		loginPage.clearAllText();
+	}
 	
-//	//TC19
-//	
-//	@Test(priority = 1,dataProvider = "loginDataProviderShortPassword")
-//	public void testLoginShortPassword(String userName, String passWord) {
-//		loginPage = new LoginPage2();
-//		loginPage.enterUserName(userName);
-//		loginPage.enterPassword(passWord);
-//		loginPage.login();
-//		String shortPassword = loginPage.getEmptyPasswordText();
-//		Assert.assertEquals(shortPassword, "Password is too short");
-//		loginPage.clearAllText();
-//		
-//	}
+	//TC19
 	
-//	//TC20- Toast message => Pending 
-//	
-//	@Test(priority = 2,dataProvider = "loginDataProviderLongPassword")
-//	public void testLoginNotExistedUserNam(String userName, String passWord) {
-//		loginPage = new LoginPage2();
-//		loginPage.enterUserName(userName);
-//		loginPage.enterPassword(passWord);
-//		loginPage.login();
-//		String longPassword = loginPage.getEmptyPasswordText();
-//		Assert.assertEquals(longPassword, "The password may not be greater than 128 characters");
-//		loginPage.clearAllText();
-//	}
+	@Test(priority = 1,dataProvider = "loginDataProviderShortPassword")
+	public void testLoginShortPassword(String userName, String passWord) {
+		loginPage = new LoginPage2();
+		loginPage.enterUserName(userName);
+		loginPage.enterPassword(passWord);
+		loginPage.login();
+		String shortPassword = loginPage.getEmptyPasswordText();
+		Assert.assertEquals(shortPassword, "Password is too short");
+		loginPage.clearAllText();
+		
+	}
 	
-//	//TC21- Toast message => Pending  
-//	@Test(priority = 3,dataProvider = "loginDataProviderSpecialCharactersPassword")
-//	public void testLoginSpecialCharactersPassword(String userName, String passWord) {
-//		loginPage = new LoginPage2();
-//		loginPage.enterUserName(userName);
-//		loginPage.enterPassword(passWord);
-//		loginPage.login();
-//		String specialCharactersPassword = loginPage.getEmptyPasswordText();
-//		Assert.assertEquals(specialCharactersPassword, "Sai mật khẩu hoặc email");
-//		loginPage.clearAllText();
-//	}
+	//TC20- Toast message 
 	
-	//TC22- Toast message => Pending 
+	@Test(priority = 2,dataProvider = "loginDataProviderLongPassword")
+	public void testLoginNotExistedUserNam(String userName, String passWord) {
+		loginPage = new LoginPage2();
+		loginPage.enterUserName(userName);
+		loginPage.enterPassword(passWord);
+		loginPage.login();
+		By verificationTextUiAuto2 = By.xpath("//android.widget.Toast[1]");
+		ExpectedCondition<WebElement> verificationReady = ExpectedConditions
+						.presenceOfElementLocated(verificationTextUiAuto2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(verificationReady);
+		WebElement toastView = getDriver().findElement(By.xpath("//android.widget.Toast[1]"));
+		Assert.assertEquals(toastView.getAttribute("name").trim(), "The password may not be greater than 128 characters.");
+		loginPage.clearAllText();
+	}
+	
+	//TC21- Toast message 
+	@Test(priority = 3,dataProvider = "loginDataProviderSpecialCharactersPassword")
+	public void testLoginSpecialCharactersPassword(String userName, String passWord) {
+		loginPage = new LoginPage2();
+		loginPage.enterUserName(userName);
+		loginPage.enterPassword(passWord);
+		loginPage.login();
+		By verificationTextUiAuto2 = By.xpath("//android.widget.Toast[1]");
+		ExpectedCondition<WebElement> verificationReady = ExpectedConditions
+						.presenceOfElementLocated(verificationTextUiAuto2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(verificationReady);
+		WebElement toastView = getDriver().findElement(By.xpath("//android.widget.Toast[1]"));
+		Assert.assertEquals(toastView.getAttribute("name").trim(), "Sai mật khẩu hoặc email");
+		loginPage.clearAllText();
+	}
+	
+	//TC22- Toast message
 	
 	@Test(priority = 4,dataProvider = "loginDataProviderSqlCharactersPassword")
 	public void testLoginSqlCharactersPassword(String userName, String passWord) {
@@ -113,34 +131,18 @@ public class LoginTest4 extends BaseClass {
 		loginPage.enterUserName(userName);
 		loginPage.enterPassword(passWord);
 		loginPage.login();
-		String sqlCharactersPassword = loginPage.getEmptyPasswordText();
-		Assert.assertEquals(sqlCharactersPassword, "Sai mật khẩu hoặc email");
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		By verificationTextUiAuto2 = By.xpath("//android.widget.Toast[1]");
+		ExpectedCondition<WebElement> verificationReady = ExpectedConditions
+						.presenceOfElementLocated(verificationTextUiAuto2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(verificationReady);
+		WebElement toastView = getDriver().findElement(By.xpath("//android.widget.Toast[1]"));
+		Assert.assertEquals(toastView.getAttribute("name").trim(), "Sai mật khẩu hoặc email");
 		loginPage.clearAllText();
-
 	}
 	
-
 	
-//	/* Wait search screen show */
-//	WebDriverWait waitSearchScreen = new WebDriverWait(this.driver, 5);
-//	waitSearchScreen.until(ExpectedConditions
-//			.visibilityOf(driver.findElement(By.id("jp.ecstudio.chatworkandroid:id/search_src_text"))));
-//
-//	try {
-//		searchEachCharacter(dataSearch);
-//	} catch (InterruptedException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-	
-	
-	//TC23- Toast message => Pending 
+	//TC23- Toast message 
 	
 	@Test(priority = 5,dataProvider = "loginDataProviderHtmlCharactersPassword")
 	public void testLoginHtmlCharactersPassword(String userName, String passWord) {
@@ -148,12 +150,17 @@ public class LoginTest4 extends BaseClass {
 		loginPage.enterUserName(userName);
 		loginPage.enterPassword(passWord);
 		loginPage.login();
-		String htmlCharactersPassword = loginPage.getEmptyPasswordText();
-		Assert.assertEquals(htmlCharactersPassword, "Sai mật khẩu hoặc email");
+		By verificationTextUiAuto2 = By.xpath("//android.widget.Toast[1]");
+		ExpectedCondition<WebElement> verificationReady = ExpectedConditions
+						.presenceOfElementLocated(verificationTextUiAuto2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(verificationReady);
+		WebElement toastView = getDriver().findElement(By.xpath("//android.widget.Toast[1]"));
+		Assert.assertEquals(toastView.getAttribute("name").trim(), "Sai mật khẩu hoặc email");
 		loginPage.clearAllText();
 	}
 	
-	//TC24- Toast message => Pending 
+	//TC24- Toast message 
 	
 	@Test(priority = 6,dataProvider = "loginDataProviderUppercaseLowercasePassword")
 	public void testLoginUppercaseLowercasePassword(String userName, String passWord) {
@@ -161,7 +168,13 @@ public class LoginTest4 extends BaseClass {
 		loginPage.enterUserName(userName);
 		loginPage.enterPassword(passWord);
 		loginPage.login();
-		String uppercaseLowercasePassword = loginPage.getEmptyPasswordText();
-		Assert.assertEquals(uppercaseLowercasePassword, "Sai mật khẩu hoặc email");
-	}
+		By verificationTextUiAuto2 = By.xpath("//android.widget.Toast[1]");
+		ExpectedCondition<WebElement> verificationReady = ExpectedConditions
+						.presenceOfElementLocated(verificationTextUiAuto2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(verificationReady);
+		WebElement toastView = getDriver().findElement(By.xpath("//android.widget.Toast[1]"));
+		Assert.assertEquals(toastView.getAttribute("name").trim(), "Sai mật khẩu hoặc email");
+
+	}	
 }

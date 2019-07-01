@@ -5,7 +5,7 @@
 	<parameter name="runAs" value="grid"></parameter>
 	<parameter name="platform" value="mobile"></parameter>
 	<parameter name="environment" value="device"></parameter>
-	<parameter name="runOn" value="emulator-5554"></parameter> <!-- emulator-5554 -->
+	<parameter name="runOn" value="087fc6cc"></parameter> <!-- emulator-5554 -->
 		<packages>
 			<package name="com.sun.appium.fgoal.scripts"></package>
 		</packages>
