@@ -39,4 +39,8 @@ public class LoginPage {
 	public String getToolbarTitle() {
 		return loginPageObject.getToolbar().getText();
 	}
+	
+	public String getToastMessage() {
+		return loginPageObject.getToastMessage().getText();
+	}
 }
