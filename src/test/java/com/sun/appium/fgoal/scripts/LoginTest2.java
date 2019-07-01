@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import com.sun.appium.fgoal.base.BaseClass;
 import com.sun.appium.fgoal.pages.LoginPage2;
-import com.sun.appium.fgoal.ultilities.CSVHelperLogin;
+import com.sun.appium.fgoal.ultilities.CSVHelperLogin3;
 
 /**
  * @author LE THI HA TC04 TC05 TC06 TC07 TC25
@@ -21,22 +21,22 @@ public class LoginTest2 extends BaseClass {
 	
 	@DataProvider
 	private Object[][] loginDataProviderNoUserName() {
-		return CSVHelperLogin.loadUser(0,1);
+		return CSVHelperLogin3.loadUser(0,1);
 	}
 	
 	@DataProvider
 	private Object[][] loginDataProviderNoPassword() {
-		return CSVHelperLogin.loadUser(1,0);
+		return CSVHelperLogin3.loadUser(1,0);
 	}
 	
 	@DataProvider
 	private Object[][] loginDataProviderNoUserNameAndPassword() {
-		return CSVHelperLogin.loadUser(0,0);
+		return CSVHelperLogin3.loadUser(0,0);
 	}
 	
 	@DataProvider
 	private Object[][] loginDataProvider() {
-		return CSVHelperLogin.loadUser(1,1);
+		return CSVHelperLogin3.loadUser(1,1);
 	}
 	
 	//TC04

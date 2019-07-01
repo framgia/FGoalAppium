@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import com.sun.appium.fgoal.base.BaseClass;
 import com.sun.appium.fgoal.pages.LoginPage2;
-import com.sun.appium.fgoal.ultilities.CSVHelperLogin;
+import com.sun.appium.fgoal.ultilities.CSVHelperLogin3;
 
 /**
  *@author LE THI HA TC08 TC09 TC13 TC14 TC15 TC16 TC17
@@ -21,37 +21,37 @@ public class LoginTest3 extends BaseClass {
 	
 	@DataProvider
 	private Object[][] loginDataProviderUppercaseLowercaseUserName() {
-		return CSVHelperLogin.loadUser08();
+		return CSVHelperLogin3.loadUser08();
 	}
 	
 	@DataProvider
 	private Object[][] loginDataProviderSpaceBeginningEndPassword() {
-		return CSVHelperLogin.loadUser09();
+		return CSVHelperLogin3.loadUser09();
 	}
 	
 	@DataProvider
 	private Object[][] loginDataProviderNotExistedUserName() {
-		return CSVHelperLogin.loadUser13();
+		return CSVHelperLogin3.loadUser13();
 	}
 	
 	@DataProvider
 	private Object[][] loginDataProviderNotExistedPassword() {
-		return CSVHelperLogin.loadUser14();
+		return CSVHelperLogin3.loadUser14();
 	}
 	
 	@DataProvider
 	private Object[][] loginDataProviderSpecialCharactersUsername() {
-		return CSVHelperLogin.loadUser15();
+		return CSVHelperLogin3.loadUser15();
 	}
 	
 	@DataProvider
 	private Object[][] loginDataProviderHtmlCharactersUsername() {
-		return CSVHelperLogin.loadUser16();
+		return CSVHelperLogin3.loadUser16();
 	}
 	
 	@DataProvider
 	private Object[][] loginDataProviderSqlCharactersUsername() {
-		return CSVHelperLogin.loadUser17();
+		return CSVHelperLogin3.loadUser17();
 	}
 	
 //	//TC08
@@ -79,16 +79,20 @@ public class LoginTest3 extends BaseClass {
 	
 	//TC13 : Can not test, dialog is not in app
 	
-//	@Test(priority = 2,dataProvider = "loginDataProviderNotExistedUserName")
-//	public void testLoginNotExistedUserNam(String userName, String passWord) {
-//		loginPage = new LoginPage2();
-//		loginPage.enterUserName(userName);
-//		loginPage.enterPassword(passWord);
-//		loginPage.login();
-//		String emptyEmail = loginPage.getEmptyEmailText();
-//		Assert.assertEquals(emptyEmail, "Empty email");
-//		loginPage.clearAllText();
-//	}
+	@Test(priority = 2,dataProvider = "loginDataProviderNotExistedUserName")
+	public void testLoginNotExistedUserNam(String userName, String passWord) {
+		loginPage = new LoginPage2();
+		loginPage.enterUserName(userName);
+		loginPage.enterPassword(passWord);
+		loginPage.login();
+		By verificationTextUiAuto2 = By.xpath("//android.widget.Toast[1]");
+		ExpectedCondition<WebElement> verificationReady = ExpectedConditions
+						.presenceOfElementLocated(verificationTextUiAuto2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(verificationReady);
+		WebElement toastView = getDriver().findElement(By.xpath("//android.widget.Toast[1]"));
+		Assert.assertEquals(toastView.getAttribute("name").trim(), "Sai mật khẩu hoặc email");
+	}
 	
 	//TC14 : Can not test, dialog is not in app
 //	@Test(priority = 3,dataProvider = "loginDataProviderNotExistedPassword")
